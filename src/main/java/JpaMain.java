@@ -1,3 +1,4 @@
+import javax.management.relation.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -12,13 +13,10 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member findMember = em.find(Member.class, 2L);
+            Member member = new Member();
+            member.setName("Stevejobs");
 
-            findMember.setName("Scott Jaile");
-
-
-
-
+            em.persist(member);
 
             tx.commit();
         } catch (Exception e) {
