@@ -14,14 +14,17 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Locker locker = new Locker();
-            locker.setName("lockerA");
-            em.persist(locker);
-
             Member member = new Member();
             member.setName("Scott");
-            member.changeLocker(locker);
+            Product product = new Product();
+            product.setName("Airpods");
             em.persist(member);
+            em.persist(product);
+
+            MemberProduct memberProduct = new MemberProduct();
+            memberProduct.setMember(member);
+            memberProduct.setProduct(product);
+            em.persist(memberProduct);
 
 
             tx.commit();
