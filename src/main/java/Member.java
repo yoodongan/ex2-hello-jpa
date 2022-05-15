@@ -16,6 +16,10 @@ public class Member {
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
+
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
@@ -87,5 +91,15 @@ public class Member {
         this.team = team;
         team.getMembers().add(this);
 
+    }
+
+    public Locker getLocker() {
+        return locker;
+    }
+
+    //연관관계 편의 메소드 추가.
+    public void changeLocker(Locker locker) {
+        this.locker = locker;
+        locker.setMember(this);
     }
 }
