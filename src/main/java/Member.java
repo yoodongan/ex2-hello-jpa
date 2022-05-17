@@ -25,15 +25,6 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<MemberProduct> memberProducts = new ArrayList<>();
 
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
-
-    private LocalDate createdDate;
-    private LocalDateTime lastModifiedDate;
-
-    @Lob
-    private String description;
-
     public Member() {
     }      // JPA는 동적으로 객체를 생성하므로 기본 생성자가 반드시 필요하다.
 
@@ -55,47 +46,18 @@ public class Member {
         this.name = name;
     }
 
-    public RoleType getRoleType() {
-        return roleType;
-    }
-
-    public void setRoleType(RoleType roleType) {
-        this.roleType = roleType;
-    }
-
-    public LocalDate getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public LocalDateTime getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Team getTeam() {
         return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     // 연관관계 편의 메소드 !!
     public void changeTeam(Team team) {
         this.team = team;
         team.getMembers().add(this);
-
     }
 
     public Locker getLocker() {
