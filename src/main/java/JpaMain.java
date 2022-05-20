@@ -13,23 +13,23 @@ public class JpaMain {
         tx.begin();
 
         try {
+            Team team = new Team();
+            team.setName("teamA");
+            em.persist(team);
+
             Member member = new Member();
             member.setName("Scott");
+            member.setTeam(team);
             em.persist(member);
 
             em.flush();
             em.clear();
 
-            Member findMember = em.getReference(Member.class, member.getId());
-            System.out.println("findMember.getClass() = " + findMember.getClass()); // proxy
-            System.out.println("findMember.getName() = " + findMember.getName());
+            Member m1 = em.find(Member.class, member.getId());
+            Team t1  = m1.getTeam();
 
-            Member member1 = em.find(Member.class, member.getId());
-            System.out.println("member1.getClass() = " + member1.getClass());
-            
+            System.out.println("t1.getClass() = " + t1.getClass());
 
-
-//            logic(member, member2);
 
             tx.commit();
         } catch (Exception e) {
@@ -51,11 +51,6 @@ public class JpaMain {
 
     }
 
-    private static void logic(Member m1, Member m2) {
-        System.out.println("m1 == m2 " + (m1 instanceof Member));
-        System.out.println("m1 == m2 " + (m2 instanceof Member));
-
-    }
 
 
 }
