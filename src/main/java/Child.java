@@ -7,7 +7,7 @@ public class Child {
 
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "PARENT_ID")
     private Parent parent;
 

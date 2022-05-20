@@ -15,12 +15,21 @@ public class JpaMain {
         try {
             Child child1 = new Child();
             child1.setName("Harry Potter");
+            Child child2 = new Child();
+            child2.setName("Lily Potter");
 
             Parent parent = new Parent();
             parent.setName("James Potter");
             parent.addChild(child1);
+            parent.addChild(child2);
+            em.persist(parent);
 
-            em.persist(child1);
+            em.flush();
+            em.clear();
+
+            Parent findParent = em.find(Parent.class, parent.getId());
+//            findParent.getChildList().remove(0);
+            em.remove(findParent);
 
             tx.commit();
         } catch (Exception e) {
