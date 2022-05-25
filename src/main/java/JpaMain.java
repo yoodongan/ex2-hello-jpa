@@ -16,7 +16,7 @@ public class JpaMain {
             Member member = new Member();
             member.setName("Scott");
             member.setHomeAddress(new Address("seoul", "yoonro", "03743"));
-
+            // practice
 
             em.persist(member);
 
