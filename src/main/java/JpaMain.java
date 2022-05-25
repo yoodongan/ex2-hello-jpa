@@ -15,13 +15,10 @@ public class JpaMain {
         try {
             Member member = new Member();
             member.setName("Scott");
-            member.setCreatedBy("Potter");
-            member.setCreatedDate(LocalDateTime.now());
-            member.setLastModifiedBy("Lucius");
+            member.setHomeAddress(new Address("seoul", "yoonro", "03743"));
+
 
             em.persist(member);
-
-
 
             tx.commit();
         } catch (Exception e) {

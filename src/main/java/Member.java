@@ -14,6 +14,40 @@ public class Member extends BaseEntity {
     @Column(name = "USERNAME", nullable = false)
     private String name;
 
+    @Embedded
+    private Period workPeriod;
+
+    @Embedded
+    private Address homeAddress;
+
+    public Period getWorkPeriod() {
+        return workPeriod;
+    }
+
+    public void setWorkPeriod(Period workPeriod) {
+        this.workPeriod = workPeriod;
+    }
+
+    public Address getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    public void setLocker(Locker locker) {
+        this.locker = locker;
+    }
+
+    public List<MemberProduct> getMemberProducts() {
+        return memberProducts;
+    }
+
+    public void setMemberProducts(List<MemberProduct> memberProducts) {
+        this.memberProducts = memberProducts;
+    }
+
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
     private Team team;
